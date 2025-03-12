@@ -1,0 +1,9 @@
+/* Si estás usando CSS */
+.sidebar {
+    transition: width 0.3s ease;
+  }
+  
+  .content {
+    transition: flex-grow 0.3s ease;
+  }
+  
