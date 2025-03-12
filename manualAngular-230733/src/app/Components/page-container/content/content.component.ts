@@ -3,7 +3,7 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-content',
-  imports: [],
+  imports: [BreadcrumbComponent,RouterOutlet],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })

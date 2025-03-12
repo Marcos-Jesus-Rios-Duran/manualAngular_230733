@@ -4,9 +4,9 @@ import { PageContainerComponent } from './Components/page-container/page-contain
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,PageContainerComponent],
+  imports: [RouterOutlet, PageContainerComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'] // Cambiado de "styleUrl" a "styleUrls"
 })
 export class AppComponent {
   title = 'manualAngular-230733';
