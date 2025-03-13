@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ejercicio-02',
-  imports: [],
   templateUrl: './ejercicio-02.component.html',
-  styleUrl: './ejercicio-02.component.css'
+  styleUrls: ['./ejercicio-02.component.css']
 })
-export class Ejercicio02Component {
+export class Ejercicio02Component implements OnInit {
   city = 'La ceiba';
+  
+  @Output() updateSidebar = new EventEmitter<{ title: string, description: string }>();
 
+  ngOnInit(): void {
+    this.updateSidebar.emit({ title: 'Ejercicio 02', description: 'Descripción del ejercicio 02' });
+  }
 }

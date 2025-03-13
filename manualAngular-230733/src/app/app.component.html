@@ -3,5 +3,30 @@
 </div>
 
 <div *ngIf="isLoggedIn">
-  <app-page-container [userName]="userName" (logout)="onLogout()"></app-page-container>
+  <div class="flex flex-col h-screen">
+    <!-- Navbar -->
+    <app-navbar [userName]="userName" 
+                (logout)="onLogout()" 
+                (toggleSidebar)="toggleSidebar()" 
+                class="bg-blue-500 text-white flex items-center">
+    </app-navbar>
+
+    <div class="flex flex-1">
+      <!-- Sidebar -->
+      <app-sidebar *ngIf="isSidebarVisible" 
+                   [title]="sidebarTitle" 
+                   [description]="sidebarDescription"
+                   [loading]="sidebarLoading" 
+                   class="bg-gray-200 w-1/4"></app-sidebar>
+
+      <!-- Content -->
+      <div [ngClass]="{'w-full': !isSidebarVisible, 'w-3/4': isSidebarVisible}" class="bg-gray-100 transition-all">
+        <app-breadcrumb></app-breadcrumb>
+        <router-outlet (activate)="onRouteChange($event)"></router-outlet>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer class="bg-blue-500 text-white text-center"></app-footer>
+  </div>
 </div>

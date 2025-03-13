@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ejercicio-01',
@@ -26,6 +26,10 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class Ejercicio01Component {
+export class Ejercicio01Component implements OnInit {
+  @Output() updateSidebar = new EventEmitter<{ title: string, description: string }>();
 
+  ngOnInit(): void {
+    this.updateSidebar.emit({ title: 'Ejercicio 01', description: 'Descripción del ejercicio 01' });
+  }
 }

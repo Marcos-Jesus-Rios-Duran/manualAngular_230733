@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,Output, EventEmitter, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-ejercicio-06',
@@ -10,5 +10,10 @@ export class Ejercicio06Component {
 
   toggleEditable() {
     this.isEditable = !this.isEditable;
+  }
+  @Output() updateSidebar = new EventEmitter<{ title: string, description: string }>();
+
+  ngOnInit(): void {
+    this.updateSidebar.emit({ title: 'Ejercicio 06', description: 'Descripción del ejercicio 06' });
   }
 }

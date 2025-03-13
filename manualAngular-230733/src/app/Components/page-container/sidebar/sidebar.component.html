@@ -1,1 +1,16 @@
-<h1>Titulo  descriptivo </h1>
+<div class="bg-black text-white font-sans p-5 m-5 rounded-lg shadow-md">
+    <div *ngIf="loading" id="page">
+      <div id="container">
+        <div id="ring"></div>
+        <div id="ring"></div>
+        <div id="ring"></div>
+        <div id="ring"></div>
+        <div id="h3">loading</div>
+      </div>
+    </div>
+    <div *ngIf="!loading">
+      <h2 class="text-yellow-500 text-3xl mb-3">{{ title }}</h2>
+      <p>{{ description }}</p>
+    </div>
+  </div>
+  
