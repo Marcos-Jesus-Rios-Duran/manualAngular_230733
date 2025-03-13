@@ -1,7 +1,11 @@
   <div class="flex flex-col h-screen">
     <!-- Navbar -->
-    <app-navbar [userName]="userName" (logout)="onLogout()" class="bg-blue-500 text-white flex items-center">
-    </app-navbar>
+<app-navbar [userName]="userName" 
+(logout)="onLogout()" 
+(toggleSidebar)="toggleSidebar()" 
+class="bg-blue-500 text-white flex items-center">
+</app-navbar>
+
 
     <div class="flex flex-1">
       <!-- Sidebar -->
