@@ -12,6 +12,8 @@ import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 })
 export class MapComponent implements AfterViewInit, OnDestroy {
   private root!: am5.Root;
+  private chart!: am5map.MapChart;
+  private backgroundSeries!: am5map.MapPolygonSeries;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private zone: NgZone) {}
 
@@ -25,23 +27,37 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.browserOnly(() => {
-      let root = am5.Root.new("chartdiv-map"); // ID corregido
-
+      let root = am5.Root.new("chartdiv-map");
       root.setThemes([am5themes_Animated.new(root)]);
 
-      const chart = root.container.children.push(
+      // Crear mapa con proyección Mercator por defecto
+      this.chart = root.container.children.push(
         am5map.MapChart.new(root, {
           panX: "rotateX",
           panY: "none",
-          projection: am5map.geoMercator(),
+          projection: am5map.geoMercator()
         })
       );
 
-      const polygonSeries = chart.series.push(
+      // Crear fondo para el globo
+      this.backgroundSeries = this.chart.series.push(am5map.MapPolygonSeries.new(root, {}));
+      this.backgroundSeries.mapPolygons.template.setAll({
+        fill: root.interfaceColors.get("alternativeBackground"),
+        fillOpacity: 0, // Ocultar por defecto en modo plano
+        strokeOpacity: 0
+      });
+
+      this.backgroundSeries.data.push({
+        geometry: am5map.getGeoRectangle(90, 180, -90, -180)
+      });
+
+      // Capa de polígonos (países)
+      const polygonSeries = this.chart.series.push(
         am5map.MapPolygonSeries.new(root, { geoJSON: am5geodata_worldLow })
       );
 
-      const pointSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
+      // Capa de puntos (ciudades)
+      const pointSeries = this.chart.series.push(am5map.MapPointSeries.new(root, {}));
 
       pointSeries.bullets.push(() => {
         return am5.Bullet.new(root, {
@@ -889,6 +905,52 @@ export class MapComponent implements AfterViewInit, OnDestroy {
           title: city.title
         });
       });
+
+      // Crear botón para cambiar de mapa plano a globo
+      let switchContainer = this.chart.children.push(
+        am5.Container.new(root, {
+          layout: root.horizontalLayout,
+          x: 20,
+          y: 40
+        })
+      );
+
+      switchContainer.children.push(
+        am5.Label.new(root, {
+          centerY: am5.p50,
+          text: "Mapa"
+        })
+      );
+
+      let switchButton = switchContainer.children.push(
+        am5.Button.new(root, {
+          themeTags: ["switch"],
+          centerY: am5.p50,
+          icon: am5.Circle.new(root, {
+            themeTags: ["icon"]
+          })
+        })
+      );
+
+      switchButton.on("active", () => {
+        if (switchButton.get("active")) {
+          this.chart.set("projection", am5map.geoOrthographic());
+          this.chart.set("panY", "rotateY");
+          this.backgroundSeries.mapPolygons.template.set("fillOpacity", 0.1);
+        } else {
+          this.chart.set("projection", am5map.geoMercator());
+          this.chart.set("panY", "translateY");
+          this.chart.set("rotationY", 0);
+          this.backgroundSeries.mapPolygons.template.set("fillOpacity", 0);
+        }
+      });
+
+      switchContainer.children.push(
+        am5.Label.new(root, {
+          centerY: am5.p50,
+          text: "Globo"
+        })
+      );
 
       this.root = root;
     });
