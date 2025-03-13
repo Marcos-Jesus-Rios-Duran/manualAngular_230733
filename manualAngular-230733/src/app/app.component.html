@@ -17,16 +17,19 @@
                    [title]="sidebarTitle" 
                    [description]="sidebarDescription"
                    [loading]="sidebarLoading" 
-                   class="bg-gray-200 w-1/4"></app-sidebar>
+                   class="bg-black w-1/4"></app-sidebar>
 
       <!-- Content -->
-      <div [ngClass]="{'w-full': !isSidebarVisible, 'w-3/4': isSidebarVisible}" class="bg-gray-100 transition-all">
+      <div [ngClass]="{'w-full': !isSidebarVisible, 'w-3/4': isSidebarVisible}" class="bg-gray-800 transition-all">
         <app-breadcrumb></app-breadcrumb>
-        <router-outlet (activate)="onRouteChange($event)"></router-outlet>
+        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        <router-outlet (activate)="onRouteChange($event) "></router-outlet>
+        
       </div>
+      
     </div>
-
-    <!-- Footer -->
-    <app-footer class="bg-blue-500 text-white text-center"></app-footer>
+ <!-- Footer -->
+ <app-footer class="bg-blue-500 text-white text-center"></app-footer>
+   
   </div>
 </div>

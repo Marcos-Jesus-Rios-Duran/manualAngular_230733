@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
-import { PageContainerComponent } from './Components/page-container/page-container.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './Components/page-container/footer/footer.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
@@ -16,7 +15,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    PageContainerComponent,
     LoginComponent,
     FooterComponent,
     NavbarComponent,
@@ -31,7 +29,7 @@ export class AppComponent implements OnInit {
   title = 'ManualEjercicios_Angular_230733';
   isLoggedIn: boolean = false;
   userName: string = '';
-  isSidebarVisible = true;
+  isSidebarVisible = false;
   sidebarTitle = '';
   sidebarDescription = '';
   sidebarLoading = true; // Agrega la bandera de carga

@@ -30,6 +30,17 @@ export class Ejercicio01Component implements OnInit {
   @Output() updateSidebar = new EventEmitter<{ title: string, description: string }>();
 
   ngOnInit(): void {
-    this.updateSidebar.emit({ title: 'Ejercicio 01', description: 'Descripción del ejercicio 01' });
+    this.updateSidebar.emit({
+      title: 'Anatomy of a Component',
+      description: `
+        Aprendí que los componentes son los pilares fundamentales de cualquier aplicación Angular. Cada componente consta de tres partes: <br>
+        Clase: <br>
+          *TypeScript<br>
+          *Plantilla HTML y <br>
+          *Estilos CSS<br>
+        Aprendí a como actualizar la plantilla de un componente, así mismo de actualizar sus estilos del componente. <br>
+        Aprendi a configurar tailwindcss para poder dar estilo desde el html usando clases en taiwlind, así mismo 
+      `
+    });   
   }
 }
