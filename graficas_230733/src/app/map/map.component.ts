@@ -896,7 +896,17 @@ export class MapComponent implements AfterViewInit, OnDestroy {
           title: "Tunis",
           latitude: 36.8117,
           longitude: 10.1761
-        }
+        },{ title: "Monterrey", latitude: 25.6866, longitude: -100.3161 },
+        { title: "Cancún", latitude: 21.1619, longitude: -86.8515 },
+        { title: "Acapulco", latitude: 16.8531, longitude: -99.8237 },
+        { title: "Guadalajara", latitude: 20.6597, longitude: -103.3496 },
+        { title: "Tijuana", latitude: 32.5149, longitude: -117.0382 },
+        { title: "Puebla de Zaragoza", latitude: 19.0414, longitude: -98.2063 },
+        { title: "Culiacán", latitude: 24.8091, longitude: -107.3940 },
+        { title: "Orizaba", latitude: 18.8500, longitude: -97.1000 },
+        { title: "Tuxtla Gutiérrez", latitude: 16.7548, longitude: -93.1200 },
+        { title: "Poza Rica", latitude: 20.5333, longitude: -97.4500 }
+      
       ];
 
       capitals.forEach(city => {
