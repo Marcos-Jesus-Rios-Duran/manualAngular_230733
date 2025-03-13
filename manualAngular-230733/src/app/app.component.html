@@ -1,1 +1,7 @@
-<app-page-container></app-page-container>
+<div *ngIf="!isLoggedIn">
+  <app-login (loginSuccess)="onLoginSuccess($event)"></app-login>
+</div>
+
+<div *ngIf="isLoggedIn">
+  <app-page-container [userName]="userName" (logout)="onLogout()"></app-page-container>
+</div>

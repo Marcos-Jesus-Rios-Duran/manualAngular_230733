@@ -1,11 +1,41 @@
-import { Component,EventEmitter, Output } from '@angular/core';
+import { Component, HostListener, EventEmitter, Output, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterModule, CommonModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
+    @Output() logout = new EventEmitter<void>();
+
+  @Input() userName: string = '';
+
+  isSubmenuVisible = false;
+  ejercicios = Array.from({ length: 12 }, (_, index) => index + 1);
+
+  toggleSubmenu(event: Event) {
+    event.stopPropagation();
+    this.isSubmenuVisible = !this.isSubmenuVisible;
+  }
+
+  onEjercicioClick(event: Event) {
+    event.stopPropagation();
+    this.isSubmenuVisible = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: Event) {
+    const targetElement = event.target as HTMLElement;
+    if (!targetElement.closest('.relative')) {
+      this.isSubmenuVisible = false;
+    }
+  }
+
+  onLogout() {
+    this.logout.emit(); // Emitir el evento para que el AppComponent lo capture
+  }
 }
