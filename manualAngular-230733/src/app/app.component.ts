@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
         this.sidebarTitle = '';
         this.sidebarDescription = '';
         this.sidebarLoading = true; // Activa la carga al cambiar de ruta
+        this.isSidebarVisible = false;
       }
     });
   }
@@ -82,4 +83,10 @@ export class AppComponent implements OnInit {
       });
     }
   }
+  onEjercicioSeleccionado(ejercicio: { titulo: string, descripcion: string }) {
+    this.sidebarTitle = ejercicio.titulo;
+    this.sidebarDescription = ejercicio.descripcion;
+    this.sidebarLoading = false; // Indicar que la información ya está cargada
+  }
+  
 }

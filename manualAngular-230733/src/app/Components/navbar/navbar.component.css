@@ -53,3 +53,11 @@
 .hidden {
   display: none;
 }
+.submenu {
+  position: absolute; /* Esto saca el submenú del flujo normal */
+  top: 100%;          /* Lo posiciona justo debajo del botón */
+  left: 0;            /* Alineación a la izquierda */
+  z-index: 9999;      /* Alto valor para que esté al frente */
+  background-color: #374151; /* Fondo para evitar transparencia */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra para destacar */
+}
