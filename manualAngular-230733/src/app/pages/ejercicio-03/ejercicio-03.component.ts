@@ -11,6 +11,6 @@ export class Ejercicio03Component implements OnInit {
   @Output() updateSidebar = new EventEmitter<{ title: string, description: string }>();
 
   ngOnInit(): void {
-    this.updateSidebar.emit({ title: 'Ejercicio 03', description: 'Descripción del ejercicio 03' });
+    this.updateSidebar.emit({ title: 'Component Composition: Composig Components', description: 'En este ejercicio aprendí a utilizar un selector para integrar componentes en Angular🅰️, permitiendo su reutilización dentro de otras plantillas.' });
   }
 }

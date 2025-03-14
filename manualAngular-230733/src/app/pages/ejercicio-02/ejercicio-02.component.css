@@ -1,12 +1,44 @@
-*{
-    .textoSaludo{
-        font-weight: bolder;
-        font-family: 'Times New Roman', Times, serif;
-    }
-    .textoResaltado{
-        color: rgb(255, 0, 0);
-        font-weight: bolder;
-        font-family: 'Times New Roman', Times, serif;
-        font-size: xx-large;
-    }
+.textoResaltado{
+color: red;
+font-size: 6xl;
 }
+/* Define el contorno animado de colores */
+.gradient-border {
+    position: relative;
+    padding: 3px;
+    border-radius: 8px;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+    background: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
+    background-size: 300% 100%;
+    border-radius: inherit;
+    animation: gradient-move 3s linear infinite;
+    transition: transform 0.5s ease-out;
+  }
+  
+  .gradient-border:hover::before {
+    transform: rotate(10deg);
+  }
+  
+  @keyframes gradient-move {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  

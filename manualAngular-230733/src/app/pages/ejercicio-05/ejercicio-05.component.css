@@ -4,38 +4,41 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
 }
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.gradient-border {
+  position: relative;
+  padding: 3px;
+  border-radius: 8px;
+  isolation: isolate;
+  overflow: hidden;
 }
 
-li {
-  background: #f8f9fa;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
-  color: #333;
-  display: flex;
-  align-items: center;
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  z-index: -1;
+  background: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
+  background-size: 300% 100%;
+  border-radius: inherit;
+  animation: gradient-move 3s linear infinite;
+  transition: transform 0.5s ease-out;
 }
 
-li::before {
-  content: "•";
-  color: #007bff;
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-right: 10px;
+.gradient-border:hover::before {
+  transform: rotate(10deg);
 }
 
-p {
-  margin: 0;
-  padding: 10px;
-  background: #79fcb4dc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

@@ -1,12 +1,21 @@
-<div class="container">
-  <h2>Lista de Sistemas Operativos</h2>
-  <ul>
-    @for (os of operatingSystems; track os.id) {
-      <li>{{os.name}}</li>
+<div class="flex flex-col items-center justify-center mt-10 p-6 bg-gray-800 rounded-lg shadow-lg border-4 gradient-border">
+  <h3 class="text-4xl font-bold text-white mb-6">Lista de Sistemas Operativos</h3>
+  <div class="grid grid-cols-2 gap-4">
+    <ul class="text-lg text-gray-300 font-serif">
+      @for (os of operatingSystems; track os.id) {
+        <li class="mt-2 px-4 py-2 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 transition duration-300">
+          {{os.name}}
+        </li>
+      }
+    </ul>
+  </div>
+
+  <h3 class="text-4xl font-bold text-white mt-8 mb-6">Lista de nombres</h3>
+  <div class="grid grid-cols-3 gap-4 text-lg text-gray-300 font-serif">
+    @for (user of users; track user.id) {
+      <p class="mt-2 px-4 py-2 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 transition duration-300">
+        {{user.name}}
+      </p>
     }
-  </ul>
-  <h2>Lista de nombres </h2>
-  @for (user of users; track user.id) {
-    <p>{{user.name}}</p> <br>
-  }
+  </div>
 </div>
