@@ -1,9 +1,16 @@
-<div class="flex flex-col min-h-screen bg-gray-300">
+<div class="flex flex-col min-h-screen bg-gray-900">
     <div class="flex justify-center items-center flex-grow">
-      <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 class="text-2xl font-bold mb-4">Login</h2>
-        <input type="text" [(ngModel)]="name" placeholder="Enter your name" class="w-full p-2 mb-4 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-pink-100">
-        <button (click)="login()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Login</button>
+      <div class="bg-gray-200 p-8 rounded-lg shadow-md w-full max-w-sm">
+        <h1 class="text-2xl font-bold mb-4 text-center text-orange-600">Login</h1>
+        <div class="group">
+        <input type="text" [(ngModel)]="name" placeholder="Enter your name" class=" in  "></div>
+        <div class="group mt-4">
+          <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
+          <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
+        </svg>
+        <input class="in" type="password" placeholder="password">
+        </div> <br>
+        <button (click)="login()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500"><a href="page0">Login</a></button>
       </div>
     </div>
     <div class="mt-auto">
