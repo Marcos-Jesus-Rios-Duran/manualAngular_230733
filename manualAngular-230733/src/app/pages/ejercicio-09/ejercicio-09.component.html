@@ -1,2 +1,13 @@
-<!-- archivo: ejercicio-09.component.html -->
-<app-child (addItemEvent)="addItem($event)"></app-child>
+<div class="flex flex-col items-center justify-center mt-10 p-6 bg-gray-800 rounded-lg shadow-lg border-4 gradient-border">
+    <h3 class="text-4xl font-bold text-black mb-6">Implementación de la Práctica 9</h3>
+    
+    <button 
+      (click)="addItem()" 
+      class="animate-pulse bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-red-500 hover:to-purple-500 text-[#11324D] font-serif py-3 px-6 rounded-full shadow-lg hover:text-white transform transition-all duration-500 ease-in-out hover:scale-110 hover:shadow-xl hover:rotate-12 hover:brightness-110"
+    >
+      Add Item
+    </button>
+    
+    <p class="mt-4 text-lg text-gray-900 font-serif">🐢 all the way down {{ items.length }}</p>
+  </div>
+  

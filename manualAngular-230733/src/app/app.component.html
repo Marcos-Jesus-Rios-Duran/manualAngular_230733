@@ -22,7 +22,6 @@
       <!-- Content -->
       <div [ngClass]="{'w-full': !isSidebarVisible, 'w-3/4': isSidebarVisible}" class="bg-gray-800 transition-all">
         <app-breadcrumb></app-breadcrumb>
-        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         <router-outlet (activate)="onRouteChange($event) "></router-outlet>
         
       </div>

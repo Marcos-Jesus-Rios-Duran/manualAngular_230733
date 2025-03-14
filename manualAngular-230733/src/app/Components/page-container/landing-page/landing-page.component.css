@@ -66,3 +66,41 @@
     font-weight: 800;
     font-size: 1.5em;
   }
+  .btn-ejercicio {
+    animation: pulse 2s infinite;
+    background-image: linear-gradient(to right, #9333ea, #ec4899, #ef4444);
+    color: #11324D;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-ejercicio:hover {
+    background-image: linear-gradient(to right, #ef4444, #9333ea);
+    color: white;
+    transform: scale(1.1) rotate(12deg);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.1);
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  

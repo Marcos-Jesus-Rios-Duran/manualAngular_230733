@@ -1,5 +1,5 @@
 import { Component, HostListener, EventEmitter, Output, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,12 +10,14 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
-    @Output() logout = new EventEmitter<void>();
+  @Output() logout = new EventEmitter<void>();
 
   @Input() userName: string = '';
 
   isSubmenuVisible = false;
   ejercicios = Array.from({ length: 12 }, (_, index) => index + 1);
+
+  constructor(private router: Router) {} // Inyecta el Router
 
   toggleSubmenu(event: Event) {
     event.stopPropagation();
@@ -37,5 +39,6 @@ export class NavbarComponent {
 
   onLogout() {
     this.logout.emit(); // Emitir el evento para que el AppComponent lo capture
+    this.router.navigate(['/page0']); // Redirige a la página page0
   }
 }
