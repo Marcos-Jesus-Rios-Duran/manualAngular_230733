@@ -9,10 +9,11 @@ import { Ejercicio07Component } from './pages/ejercicio-07/ejercicio-07.componen
 import { Ejercicio08Component } from './pages/ejercicio-08/ejercicio-08.component'; 
 import { Ejercicio09Component } from './pages/ejercicio-09/ejercicio-09.component'; 
 import { Ejercicio10Component } from './pages/ejercicio-10/ejercicio-10.component';
-import { LandingPageComponent } from './components/page-container/landing-page/landing-page.component';
+import { LandingPageComponent } from './Components/page-container/landing-page/landing-page.component';
 import { Ejercicio11Component } from './pages/ejercicio-11/ejercicio-11.component';
 import { Ejercicio12Component } from './pages/ejercicio-12/ejercicio-12.component'; 
-import { ZeroConfigComponentComponent } from './tables/zero-config-component/zero-config-component.component';
+import { ContentTablesComponent } from './tables/content-tables/content-tables.component';
+import { ContentDashboardComponent } from './dashboard/content-dashboard/content-dashboard.component';
 export const routes: Routes = [ 
   { path: '', redirectTo: 'page0', pathMatch: 'full' },
   { path: 'page0', component: LandingPageComponent, data: { breadcrumb: 'Ejercicio 0' } },
@@ -28,6 +29,7 @@ export const routes: Routes = [
   { path: 'page10', component: Ejercicio10Component, data: { breadcrumb: 'Ejercicio 10' } },
   { path: 'page11', component: Ejercicio11Component, data: { breadcrumb: 'Ejercicio 11' } },
   { path: 'page12', component: Ejercicio12Component, data: { breadcrumb: 'Ejercicio 12' } },
-  {path:'table1',component:ZeroConfigComponentComponent,data:{breadcrumb:'Tabla 1'}},
+  {path:'table1',component:ContentTablesComponent,data:{breadcrumb:'Table 1'}},
+  {path:'dashboardContent',component:ContentDashboardComponent,data:{breadcrumb:'Dashboards'}},
   { path: '**', redirectTo: 'page0' }
 ];
