@@ -1,13 +1,48 @@
-<div class="flex items-center justify-between bg-blue-500 text-white ">
+<div class="flex items-center justify-between bg-blue-500 text-white">
   <!-- Botón Toggle -->
   <button (click)="toggleSidebar.emit()" class="p-3.5 py-3 rounded focus:outline-none -mt-1">
       <svg class="w-6 h-6 text-white hover:text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
       </svg>
   </button>
-  <div class="flex-grow text-center text-white font-serif">Practica Manual de Angular Marcos Jesús Ríos Duran 230733
-    <p class="text-blue-500">ndjvndvhcbdnbndcvndbcnmdcbnmdbncnmdbcbdncbndbcdbnccdhgjk</p>
-</div>
+  <div class="flex-grow text-center text-white font-serif">Practica Manual de Angular Marcos Jesús Ríos Duran 230733</div>
+  
+  <!-- Botón de Star Wars (BB-8)  -->
+  <div class="scale-50"> <!-- Ajusta el tamaño y el margen -->
+    <label class="bb8-toggle">
+      <input class="bb8-toggle__checkbox" type="checkbox">
+      <div class="bb8-toggle__container">
+        <div class="bb8-toggle__scenery">
+          <div class="bb8-toggle__star"></div>
+          <div class="bb8-toggle__star"></div>
+          <div class="bb8-toggle__star"></div>
+          <div class="bb8-toggle__star"></div>
+          <div class="bb8-toggle__star"></div>
+          <div class="bb8-toggle__star"></div>
+          <div class="bb8-toggle__star"></div>
+          <div class="tatto-1"></div>
+          <div class="tatto-2"></div>
+          <div class="gomrassen"></div>
+          <div class="hermes"></div>
+          <div class="chenini"></div>
+          <div class="bb8-toggle__cloud"></div>
+          <div class="bb8-toggle__cloud"></div>
+          <div class="bb8-toggle__cloud"></div>
+        </div>
+        <div class="bb8">
+          <div class="bb8__head-container">
+            <div class="bb8__antenna"></div>
+            <div class="bb8__antenna"></div>
+            <div class="bb8__head"></div>
+          </div>
+          <div class="bb8__body"></div>
+        </div>
+        <div class="artificial__hidden">
+          <div class="bb8__shadow"></div>
+        </div>
+      </div>
+    </label>
+  </div>
 
   <div class="flex-grow flex justify-center space-x-4 pr-3 py-2">
       <!-- Botón de Ejercicios con animación -->
@@ -33,7 +68,6 @@
                 {{ ejercicio.titulo }}
               </a>
             </li>
-                           
           </ul>
         </div>
       </div>

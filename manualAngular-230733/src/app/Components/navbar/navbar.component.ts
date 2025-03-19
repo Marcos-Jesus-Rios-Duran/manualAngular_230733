@@ -45,7 +45,6 @@ export class NavbarComponent {
     this.isSubmenuVisible = false;
   }
 
-
   @HostListener('document:click', ['$event'])
   onClick(event: Event) {
     const targetElement = event.target as HTMLElement;
