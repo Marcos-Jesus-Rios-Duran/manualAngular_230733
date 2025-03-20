@@ -90,5 +90,5 @@ export class ZeroConfigComponentComponent implements OnInit {
   // Pagina los datos según el tamaño de página seleccionado
   paginateData() {
     this.paginatedData = this.filteredData.slice(0, this.pageSize);
-  }
+  } 
 }
