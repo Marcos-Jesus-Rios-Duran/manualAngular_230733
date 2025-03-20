@@ -8,7 +8,8 @@
       <option value="5">Mostrar 5</option>
       <option value="10">Mostrar 10</option>
       <option value="20">Mostrar 20</option>
-      <option value="80">Mostrar Todos</option>
+      <option value="25">Mostrar 25</option>
+      <option value="81">Mostrar Todos</option>
     </select>
   </div>
   
@@ -45,5 +46,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Navegación entre páginas -->
+  <div class="mt-6 flex justify-center items-center gap-4">
+    <button (click)="previousPage()" [disabled]="currentPage === 1" class="px-4 py-2 bg-yellow-200 rounded-lg shadow-sm hover:bg-yellow-300 transition">Anterior</button>
+    <span class="text-gray-800">Página {{ currentPage }} de {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="px-4 py-2 bg-yellow-200 rounded-lg shadow-sm hover:bg-yellow-300 transition">Siguiente</button>
   </div>
 </div>
