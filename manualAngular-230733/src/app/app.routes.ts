@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard'; // Importa el guardia
 import { Ejercicio01Component } from './pages/ejercicio-01/ejercicio-01.component';
 import { Ejercicio02Component } from './pages/ejercicio-02/ejercicio-02.component'; 
 import { Ejercicio03Component } from './pages/ejercicio-03/ejercicio-03.component'; 
@@ -16,6 +17,7 @@ import { ContentTablesComponent } from './tables/content-tables/content-tables.c
 import { ContentDashboardComponent } from './dashboard/content-dashboard/content-dashboard.component';
 import { ZeroConfigComponentComponent } from './tables/zero-config-component/zero-config-component.component';
 import { NintendoTableComponent } from './tables/nintendo-table/nintendo-table.component';
+import { SessionsTableComponent } from './tables/sessions-table/sessions-table.component';
 export const routes: Routes = [ 
   { path: '', redirectTo: 'page0', pathMatch: 'full' },
   { path: 'page0', component: LandingPageComponent, data: { breadcrumb: 'Ejercicio 0' } },
@@ -31,8 +33,11 @@ export const routes: Routes = [
   { path: 'page10', component: Ejercicio10Component, data: { breadcrumb: 'Ejercicio 10' } },
   { path: 'page11', component: Ejercicio11Component, data: { breadcrumb: 'Ejercicio 11' } },
   { path: 'page12', component: Ejercicio12Component, data: { breadcrumb: 'Ejercicio 12' } },
+  {path:'cont',component:ContentTablesComponent,data:{breadcrumb:'cont'}},
+
   {path:'table1',component:ZeroConfigComponentComponent,data:{breadcrumb:'Table 1'}},
   {path:'table2',component:NintendoTableComponent,data:{breadcrumb:'Table 2'}},
+  {path:'table3',component:SessionsTableComponent,data:{breadcrumb:'Table 3'}},
   {path:'dashboardContent',component:ContentDashboardComponent,data:{breadcrumb:'Dashboards'}},
   { path: '**', redirectTo: 'page0' }
 ];
