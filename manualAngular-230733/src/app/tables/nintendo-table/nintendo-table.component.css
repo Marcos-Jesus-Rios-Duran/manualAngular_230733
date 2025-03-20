@@ -1,0 +1,12 @@
+/* Estilo para el contenedor con scroll */
+.scroll-container {
+  max-height: 60vh; /* Altura máxima del 60% del viewport */
+  overflow-y: auto; /* Habilita el scroll vertical */
+  padding: 1rem; /* Espaciado interno */
+  border: 2px solid transparent; /* Borde transparente para evitar saltos */
+}
+
+/* Asegura que el contenedor principal no haga scroll */
+.flex-\[0\.88\] {
+  overflow: hidden; /* Evita el scroll en el contenedor principal */
+}

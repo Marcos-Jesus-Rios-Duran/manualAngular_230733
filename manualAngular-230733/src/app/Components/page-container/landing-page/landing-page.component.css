@@ -113,7 +113,7 @@
 #cont {
   background-color: #171717;
   border-radius: 5px;
-  height: 98%;
+  height: 97%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 /*card nuevo  */
@@ -241,4 +241,7 @@
 .sci li a:hover {
   fill: currentColor;
   color: rgba(255, 255, 255, 1);
+}
+.flex-\[0\.88\] {
+  overflow: hidden; /* Evita el scroll en el contenedor principal */
 }

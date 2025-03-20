@@ -1,14 +1,14 @@
-<div class="flex-[0.88] p-4 bg-yellow-100 shadow rounded h-full overflow-auto">
+<div class="flex-[0.88] p-4 bg-gradient-to-r from-yellow-100 via-yellow-50 to-yellow-100 shadow-lg rounded-lg gradient-border" id="c">
   <!-- Título -->
-  <h1 class="text-4xl font-bold text-center mb-4">Películas Favoritas</h1>
+  <h1 class="text-5xl font-extrabold text-center mb-6 text-gray-800 drop-shadow">🎥 Películas Favoritas 🎞️</h1>
   
   <!-- Controles: Buscador y Selector de Cantidad -->
-  <div class="mb-4 flex justify-between">
+  <div class="mb-6 flex justify-between items-center gap-4">
     <!-- Buscador -->
-    <input id="searchInput" type="text" class="px-4 py-2 border rounded shadow w-1/3" placeholder="Buscar..." (input)="filterTable($event)">
+    <input id="searchInput" type="text" class="px-4 py-2 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-1/3" placeholder="🔍 Buscar..." (input)="filterTable($event)">
     
     <!-- Selector de Cantidad -->
-    <select class="px-4 py-2 border rounded shadow" (change)="changePageSize($event)">
+    <select class="border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500" (change)="changePageSize($event)">
       <option value="5">Mostrar 5</option>
       <option value="10">Mostrar 10</option>
       <option value="20">Mostrar 20</option>
@@ -16,23 +16,26 @@
     </select>
   </div>
   
-  <!-- Tabla -->
-  <table id="favoritesTable" class="table-auto w-full text-left">
-    <thead class="bg-gray-200">
-      <tr>
-        <th class="px-4 py-2 cursor-pointer" (click)="sortTable('id')">ID</th>
-        <th class="px-4 py-2 cursor-pointer" (click)="sortTable('nombre')">Nombre</th>
-        <th class="px-4 py-2 cursor-pointer" (click)="sortTable('apellido')">Apellido</th>
-        <th class="px-4 py-2 cursor-pointer" (click)="sortTable('serie')">Serie Favorita</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of paginatedData">
-        <td class="border px-4 py-2">{{ item.id }}</td>
-        <td class="border px-4 py-2">{{ item.nombre }}</td>
-        <td class="border px-4 py-2">{{ item.apellido }}</td>
-        <td class="border px-4 py-2">{{ item.serie }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Contenedor con scroll -->
+  <div class="scroll-container">
+    <!-- Tabla -->
+    <table id="favoritesTable" class="table-auto w-full text-left border-collapse border border-gray-200">
+      <thead class="bg-yellow-200 border-b border-gray-300">
+        <tr>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('id')">ID</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('nombre')">Nombre</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('apellido')">Apellido</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('serie')">Serie Favorita</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of paginatedData" class="odd:bg-yellow-50 even:bg-yellow-100 hover:bg-yellow-200 transition">
+          <td class="border px-4 py-2 text-gray-800">{{ item.id }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.nombre }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.apellido }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.serie }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

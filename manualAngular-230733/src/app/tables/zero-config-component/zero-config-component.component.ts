@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-zero-config-component',
   templateUrl: './zero-config-component.component.html',
-  imports:[CommonModule],
+  imports: [CommonModule],
   styleUrls: ['./zero-config-component.component.css']
 })
-export class ZeroConfigComponentComponent {
+export class ZeroConfigComponentComponent implements OnInit {
   data = [
     { id: 1, nombre: 'Profe Marco', apellido: 'Ramirez', serie: 'Umbrella Academy' },
     { id: 2, nombre: 'Josue', apellido: 'Martinez', serie: 'Ben 10' },
@@ -21,7 +22,7 @@ export class ZeroConfigComponentComponent {
     { id: 11, nombre: 'Zyanya', apellido: 'Zacatenco', serie: 'Transformers Prime' },
     { id: 12, nombre: 'Karen', apellido: 'Negrete', serie: 'Bones' },
     { id: 13, nombre: 'Uriel', apellido: 'Medina', serie: 'Black Clover' },
-    { id: 14, nombre: 'Agustín', apellido: 'Ape', serie: 'Berlín' },
+    { id: 14, nombre: 'Agustín', apellido: 'Jimenez', serie: 'Berlín' },
     { id: 15, nombre: 'Chris', apellido: 'Rodrigez', serie: 'Luis Miguel' },
     { id: 16, nombre: 'Jonathan', apellido: 'Baldemar', serie: 'Bajoterra' },
     { id: 17, nombre: 'Edgar', apellido: 'Cabrera', serie: 'Daredevil' },
@@ -48,11 +49,16 @@ export class ZeroConfigComponentComponent {
     serie: 'none'
   };
 
+  ngOnInit() {
+    this.paginateData(); // Aplica el valor por defecto al inicio
+  }
+
   // Filtra la tabla según el texto ingresado
   filterTable(event: Event) {
     const input = event.target as HTMLInputElement;
     const filter = input.value.toLowerCase();
     this.filteredData = this.data.filter(item => 
+      item.id.toString().includes(filter) || // Filtra por ID
       item.nombre.toLowerCase().includes(filter) || 
       item.apellido.toLowerCase().includes(filter)
     );

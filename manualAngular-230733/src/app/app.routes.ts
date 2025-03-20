@@ -14,6 +14,8 @@ import { Ejercicio11Component } from './pages/ejercicio-11/ejercicio-11.componen
 import { Ejercicio12Component } from './pages/ejercicio-12/ejercicio-12.component'; 
 import { ContentTablesComponent } from './tables/content-tables/content-tables.component';
 import { ContentDashboardComponent } from './dashboard/content-dashboard/content-dashboard.component';
+import { ZeroConfigComponentComponent } from './tables/zero-config-component/zero-config-component.component';
+import { NintendoTableComponent } from './tables/nintendo-table/nintendo-table.component';
 export const routes: Routes = [ 
   { path: '', redirectTo: 'page0', pathMatch: 'full' },
   { path: 'page0', component: LandingPageComponent, data: { breadcrumb: 'Ejercicio 0' } },
@@ -29,7 +31,8 @@ export const routes: Routes = [
   { path: 'page10', component: Ejercicio10Component, data: { breadcrumb: 'Ejercicio 10' } },
   { path: 'page11', component: Ejercicio11Component, data: { breadcrumb: 'Ejercicio 11' } },
   { path: 'page12', component: Ejercicio12Component, data: { breadcrumb: 'Ejercicio 12' } },
-  {path:'table1',component:ContentTablesComponent,data:{breadcrumb:'Table 1'}},
+  {path:'table1',component:ZeroConfigComponentComponent,data:{breadcrumb:'Table 1'}},
+  {path:'table2',component:NintendoTableComponent,data:{breadcrumb:'Table 2'}},
   {path:'dashboardContent',component:ContentDashboardComponent,data:{breadcrumb:'Dashboards'}},
   { path: '**', redirectTo: 'page0' }
 ];
