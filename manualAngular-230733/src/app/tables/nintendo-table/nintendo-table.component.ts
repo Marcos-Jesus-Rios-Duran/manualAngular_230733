@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import * as Papa from 'papaparse';
 
 @Component({
   selector: 'app-nintendo-table',
@@ -11,14 +9,36 @@ import * as Papa from 'papaparse';
   standalone: true, // Si estás usando Angular 17+ con standalone components
 })
 export class NintendoTableComponent implements OnInit {
-  data: any[] = []; // Almacena los datos del CSV
-  filteredData: any[] = []; // Datos filtrados
-  paginatedData: any[] = []; // Datos paginados
-  pageSize = 10; // Cantidad de datos a mostrar por defecto
-  currentPage = 1; // Página actual
-  totalPages = 1; // Total de páginas
-  showMetaScore = true; // Mostrar u ocultar la columna meta_score
-  showTitle = true; // Mostrar u ocultar la columna title
+  data = [
+    {
+      meta_score: 85,
+      title: "Pikmin 3 Deluxe",
+      platform: "Switch",
+      date: "Oct 30, 2020",
+      user_score: 8.7,
+      link: "/game/switch/pikmin-3-deluxe",
+      esrb_rating: "E",
+      developers: ["Nintendo"],
+      genres: ["Strategy", "Real-Time", "General"]
+    },
+    {
+      meta_score: null,
+      title: "Super Mario RPG",
+      platform: "Switch",
+      date: "Nov 17, 2023",
+      user_score: null,
+      link: "/game/switch/super-mario-rpg",
+      esrb_rating: "E",
+      developers: ["Nintendo"],
+      genres: ["Role-Playing", "Japanese-Style"]
+    },
+    // Añade más datos manualmente o carga desde un JSON
+  ];
+
+  filteredData = this.data.slice(); // Datos filtrados
+  paginatedData = this.data.slice(); // Datos paginados
+  pageSize = 5; // Cantidad de datos a mostrar por defecto
+  disabledRows: number[] = []; // Filas desactivadas por checkbox
 
   sortDirection: { [key: string]: 'asc' | 'desc' | 'none' } = {
     meta_score: 'none',
@@ -26,58 +46,57 @@ export class NintendoTableComponent implements OnInit {
     platform: 'none',
     date: 'none',
     user_score: 'none',
+    link: 'none',
     esrb_rating: 'none',
     developers: 'none',
-    genres: 'none',
+    genres: 'none'
   };
 
-  constructor(private http: HttpClient) {}
-
   ngOnInit() {
-    this.loadCSVData();
-  }
-
-  // Carga los datos del archivo CSV
-  loadCSVData() {
-    this.http.get('/assets/NintendoGames.csv', { responseType: 'text' }).subscribe(
-      (csvData) => {
-        Papa.parse(csvData, {
-          header: true, // Usa la primera fila como nombres de columnas
-          skipEmptyLines: true,
-          complete: (result) => {
-            this.data = result.data.slice(0, 200); // Limita a 200 registros
-            this.filteredData = this.data.slice(); // Inicializa los datos filtrados
-            this.calculateTotalPages(); // Calcula el total de páginas
-            this.paginateData(); // Pagina los datos
-          },
-        });
-      },
-      (error) => {
-        console.error('Error al cargar el archivo CSV:', error);
-      }
-    );
+    this.paginateData(); // Aplica el valor por defecto al inicio
   }
 
   // Filtra la tabla según el texto ingresado
   filterTable(event: Event) {
     const input = event.target as HTMLInputElement;
     const filter = input.value.toLowerCase();
-    this.filteredData = this.data.filter((item) =>
-      Object.values(item).some((val) =>
-        String(val).toLowerCase().includes(filter)
-  );
-    this.calculateTotalPages(); // Recalcula el total de páginas
-    this.currentPage = 1; // Reinicia a la primera página
+    this.filteredData = this.data.filter(item =>
+      (item.meta_score !== null && item.meta_score.toString().includes(filter)) ||
+      (item.title !== null && item.title.toLowerCase().includes(filter)) ||
+      (item.platform !== null && item.platform.toLowerCase().includes(filter)) ||
+      (item.date !== null && item.date.toLowerCase().includes(filter)) ||
+      (item.user_score !== null && item.user_score.toString().includes(filter)) ||
+      (item.link !== null && item.link.toLowerCase().includes(filter)) ||
+      (item.esrb_rating !== null && item.esrb_rating.toLowerCase().includes(filter)) ||
+      (item.developers !== null && item.developers.join(', ').toLowerCase().includes(filter)) ||
+      (item.genres !== null && item.genres.join(', ').toLowerCase().includes(filter))
+    );
     this.paginateData(); // Actualiza los datos paginados
   }
 
   // Ordena la tabla según la columna seleccionada
   sortTable(column: string) {
     if (this.sortDirection[column] === 'none' || this.sortDirection[column] === 'desc') {
-      this.filteredData.sort((a, b) => (a[column] || '').localeCompare(b[column] || ''));
+      this.filteredData.sort((a, b) => {
+        const aValue = a[column as keyof typeof a];
+        const bValue = b[column as keyof typeof b];
+        if (aValue === null || bValue === null) return 0;
+        if (typeof aValue === 'string' && typeof bValue === 'string') {
+          return aValue.localeCompare(bValue);
+        }
+        return (aValue as number) - (bValue as number);
+      });
       this.sortDirection[column] = 'asc';
     } else if (this.sortDirection[column] === 'asc') {
-      this.filteredData.sort((a, b) => (b[column] || '').localeCompare(a[column] || ''));
+      this.filteredData.sort((a, b) => {
+        const aValue = a[column as keyof typeof a];
+        const bValue = b[column as keyof typeof b];
+        if (aValue === null || bValue === null) return 0;
+        if (typeof aValue === 'string' && typeof bValue === 'string') {
+          return bValue.localeCompare(aValue);
+        }
+        return (bValue as number) - (aValue as number);
+      });
       this.sortDirection[column] = 'desc';
     } else {
       this.filteredData = this.data.slice(); // Restablece al orden original
@@ -90,38 +109,20 @@ export class NintendoTableComponent implements OnInit {
   changePageSize(event: Event) {
     const select = event.target as HTMLSelectElement;
     this.pageSize = parseInt(select.value);
-    this.calculateTotalPages(); // Recalcula el total de páginas
-    this.currentPage = 1; // Reinicia a la primera página
     this.paginateData(); // Actualiza los datos paginados
-  }
-
-  // Calcula el total de páginas
-  calculateTotalPages() {
-    this.totalPages = Math.ceil(this.filteredData.length / this.pageSize);
-  }
-
-  // Cambia a la página seleccionada
-  goToPage(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      this.paginateData();
-    }
   }
 
   // Pagina los datos según el tamaño de página seleccionado
   paginateData() {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.paginatedData = this.filteredData.slice(startIndex, endIndex);
+    this.paginatedData = this.filteredData.slice(0, this.pageSize);
   }
 
-  // Oculta o muestra la columna meta_score
-  toggleMetaScore() {
-    this.showMetaScore = !this.showMetaScore;
-  }
-
-  // Oculta o muestra la columna title
-  toggleTitle() {
-    this.showTitle = !this.showTitle;
+  // Desactiva o activa una fila
+  toggleRow(index: number) {
+    if (this.disabledRows.includes(index)) {
+      this.disabledRows = this.disabledRows.filter(i => i !== index);
+    } else {
+      this.disabledRows.push(index);
+    }
   }
 }

@@ -1,66 +1,49 @@
 <div class="flex-[0.88] p-4 bg-gradient-to-r from-yellow-100 via-yellow-50 to-yellow-100 shadow-lg rounded-lg gradient-border">
-  <!-- Título -->
   <h1 class="text-5xl font-extrabold text-center mb-6 text-gray-800 drop-shadow">🎮 Nintendo Games 🕹️</h1>
   
-  <!-- Controles: Buscador, Selector de Cantidad y Ocultar Columnas -->
   <div class="mb-6 flex justify-between items-center gap-4">
-    <!-- Buscador -->
     <input id="searchInput" type="text" class="px-4 py-2 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-1/3" placeholder="🔍 Buscar..." (input)="filterTable($event)">
     
-    <!-- Selector de Cantidad -->
     <select class="border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500" (change)="changePageSize($event)">
+      <option value="5">Mostrar 5</option>
       <option value="10">Mostrar 10</option>
       <option value="20">Mostrar 20</option>
-      <option value="50">Mostrar 50</option>
-      <option value="100">Mostrar 100</option>
+      <option value="80">Mostrar Todos</option>
     </select>
-
-    <!-- Botones para ocultar/mostrar columnas -->
-    <div class="flex gap-2">
-      <button (click)="toggleMetaScore()" class="px-4 py-2 bg-yellow-300 rounded-lg shadow-sm hover:bg-yellow-400 transition">
-        {{ showMetaScore ? 'Ocultar Meta Score' : 'Mostrar Meta Score' }}
-      </button>
-      <button (click)="toggleTitle()" class="px-4 py-2 bg-yellow-300 rounded-lg shadow-sm hover:bg-yellow-400 transition">
-        {{ showTitle ? 'Ocultar Título' : 'Mostrar Título' }}
-      </button>
-    </div>
   </div>
   
-  <!-- Contenedor con scroll -->
   <div class="scroll-container">
-    <!-- Tabla -->
     <table id="nintendoTable" class="table-auto w-full text-left border-collapse border border-gray-200">
       <thead class="bg-yellow-200 border-b border-gray-300">
         <tr>
-          <th *ngIf="showMetaScore" class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('meta_score')">Meta Score</th>
-          <th *ngIf="showTitle" class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('title')">Título</th>
-          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('platform')">Plataforma</th>
-          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('date')">Fecha</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('meta_score')">Meta Score</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('title')">Title</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('platform')">Platform</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('date')">Date</th>
           <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('user_score')">User Score</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('link')">Link</th>
           <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('esrb_rating')">ESRB Rating</th>
-          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('developers')">Desarrolladores</th>
-          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('genres')">Géneros</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('developers')">Developers</th>
+          <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('genres')">Genres</th>
+          <th class="px-4 py-2 font-bold text-gray-700">Disable</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of paginatedData" class="odd:bg-yellow-50 even:bg-yellow-100 hover:bg-yellow-200 transition">
-          <td *ngIf="showMetaScore" class="border px-4 py-2 text-gray-800">{{ item.meta_score }}</td>
-          <td *ngIf="showTitle" class="border px-4 py-2 text-gray-800">{{ item.title }}</td>
-          <td class="border px-4 py-2 text-gray-800">{{ item.platform }}</td>
-          <td class="border px-4 py-2 text-gray-800">{{ item.date }}</td>
-          <td class="border px-4 py-2 text-gray-800">{{ item.user_score }}</td>
-          <td class="border px-4 py-2 text-gray-800">{{ item.esrb_rating }}</td>
-          <td class="border px-4 py-2 text-gray-800">{{ item.developers }}</td>
-          <td class="border px-4 py-2 text-gray-800">{{ item.genres }}</td>
+        <tr *ngFor="let item of paginatedData; let i = index" class="odd:bg-yellow-50 even:bg-yellow-100 hover:bg-yellow-200 transition" [class.opacity-50]="disabledRows.includes(i)">
+          <td class="border px-4 py-2 text-gray-800">{{ item.meta_score ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.title ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.platform ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.date ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.user_score ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.link ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.esrb_rating ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.developers?.join(', ') ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">{{ item.genres?.join(', ') ?? 'N/A' }}</td>
+          <td class="border px-4 py-2 text-gray-800">
+            <input type="checkbox" (change)="toggleRow(i)" [checked]="disabledRows.includes(i)">
+          </td>
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <!-- Paginación -->
-  <div class="mt-6 flex justify-center gap-2">
-    <button *ngFor="let page of getPages()" (click)="goToPage(page)" class="px-4 py-2 bg-yellow-300 rounded-lg shadow-sm hover:bg-yellow-400 transition">
-      {{ page }}
-    </button>
   </div>
 </div>

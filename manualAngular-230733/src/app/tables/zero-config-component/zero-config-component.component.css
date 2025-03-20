@@ -6,6 +6,7 @@
     isolation: isolate;
     overflow: hidden;
     background-clip: padding-box;
+    height:96%
   }
   
   .gradient-border::before {
@@ -41,7 +42,7 @@
   
   /* Estilo para el contenedor interno con scroll */
   .scroll-container {
-    max-height: 50vh; /* Altura máxima del 60% del viewport */
+    max-height: 68vh; /* Altura máxima del 60% del viewport */
     overflow-y: auto; /* Habilita el scroll vertical */
     padding: 1rem; /* Espaciado interno */
     border: 2px solid transparent; /* Borde transparente para evitar saltos */
@@ -50,4 +51,7 @@
   /* Asegura que el contenedor principal no haga scroll */
   .flex-\[0\.88\] {
     overflow: hidden; /* Evita el scroll en el contenedor principal */
+  }
+  #c{
+    background-color: #14141414;
   }
