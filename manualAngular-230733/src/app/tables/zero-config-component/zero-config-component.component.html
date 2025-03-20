@@ -1,185 +1,38 @@
 <div class="flex-[0.88] p-4 bg-yellow-100 shadow rounded h-full overflow-auto">
-    <!-- Título -->
-    <h1 class="text-4xl font-bold text-center mb-4">Películas Favoritas</h1>
-    
+  <!-- Título -->
+  <h1 class="text-4xl font-bold text-center mb-4">Películas Favoritas</h1>
+  
+  <!-- Controles: Buscador y Selector de Cantidad -->
+  <div class="mb-4 flex justify-between">
     <!-- Buscador -->
-    <div class="mb-4 flex">
-      <input id="searchInput" type="text" class="px-4 py-2 border rounded shadow w-1/3" placeholder="Buscar..." onkeyup="filterTable()">
-    </div>
+    <input id="searchInput" type="text" class="px-4 py-2 border rounded shadow w-1/3" placeholder="Buscar..." (input)="filterTable($event)">
     
-    <!-- Tabla -->
-    <table id="favoritesTable" class="table-auto w-full text-left">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="px-4 py-2">ID</th>
-          <th class="px-4 py-2">Nombre</th>
-          <th class="px-4 py-2">Serie Favorita</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="border px-4 py-2">1</td>
-          <td class="border px-4 py-2">Profe Marco</td>
-          <td class="border px-4 py-2">Umbrella Academy</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">2</td>
-          <td class="border px-4 py-2">Josue</td>
-          <td class="border px-4 py-2">Ben 10</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">3</td>
-          <td class="border px-4 py-2">Daniela</td>
-          <td class="border px-4 py-2">Anne</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">4</td>
-          <td class="border px-4 py-2">Lore</td>
-          <td class="border px-4 py-2">Malcolm</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">5</td>
-          <td class="border px-4 py-2">Daniel</td>
-          <td class="border px-4 py-2">Breaking Bad</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">6</td>
-          <td class="border px-4 py-2">Antonio</td>
-          <td class="border px-4 py-2">The Walking Dead</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">7</td>
-          <td class="border px-4 py-2">Dulce</td>
-          <td class="border px-4 py-2">The Walking Dead</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">8</td>
-          <td class="border px-4 py-2">Bryan</td>
-          <td class="border px-4 py-2">La Casa de Papel</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">9</td>
-          <td class="border px-4 py-2">Amaury</td>
-          <td class="border px-4 py-2">Drake y Josh</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">10</td>
-          <td class="border px-4 py-2">Carlos</td>
-          <td class="border px-4 py-2">América</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">11</td>
-          <td class="border px-4 py-2">Zyanya</td>
-          <td class="border px-4 py-2">Transformers Prime</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">12</td>
-          <td class="border px-4 py-2">Karen</td>
-          <td class="border px-4 py-2">Bones</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">13</td>
-          <td class="border px-4 py-2">Uriel</td>
-          <td class="border px-4 py-2">Black Clover</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">14</td>
-          <td class="border px-4 py-2">Agustín</td>
-          <td class="border px-4 py-2">Berlín</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">15</td>
-          <td class="border px-4 py-2">Chris</td>
-          <td class="border px-4 py-2">Luis Miguel</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">16</td>
-          <td class="border px-4 py-2">Jonathan</td>
-          <td class="border px-4 py-2">Bajoterra</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">17</td>
-          <td class="border px-4 py-2">Edgar</td>
-          <td class="border px-4 py-2">Daredevil</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">18</td>
-          <td class="border px-4 py-2">Juvenal</td>
-          <td class="border px-4 py-2">Final Space</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">19</td>
-          <td class="border px-4 py-2">Teco</td>
-          <td class="border px-4 py-2">Euphoria</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">20</td>
-          <td class="border px-4 py-2">Tania</td>
-          <td class="border px-4 py-2">Hora de Aventura</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">21</td>
-          <td class="border px-4 py-2">Brandom</td>
-          <td class="border px-4 py-2">Legends of Tomorrow</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">22</td>
-          <td class="border px-4 py-2">Esther</td>
-          <td class="border px-4 py-2">La Casa de Papel</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">23</td>
-          <td class="border px-4 py-2">Abril</td>
-          <td class="border px-4 py-2">Jóvenes Altezas</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">24</td>
-          <td class="border px-4 py-2">Ángel</td>
-          <td class="border px-4 py-2">Wandavision</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">25</td>
-          <td class="border px-4 py-2">Ida</td>
-          <td class="border px-4 py-2">Rick y Morty</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">26</td>
-          <td class="border px-4 py-2">Osvaldo</td>
-          <td class="border px-4 py-2">Tokyo Ghoul</td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">27</td>
-          <td class="border px-4 py-2">Marcos</td>
-          <td class="border px-4 py-2">Game of Thrones</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Selector de Cantidad -->
+    <select class="px-4 py-2 border rounded shadow" (change)="changePageSize($event)">
+      <option value="5">Mostrar 5</option>
+      <option value="10">Mostrar 10</option>
+      <option value="20">Mostrar 20</option>
+      <option value="27">Mostrar Todos</option>
+    </select>
   </div>
   
-  <script>
-    function filterTable() {
-      const input = document.getElementById('searchInput');  // Obtiene el campo de búsqueda
-      const filter = input.value.toLowerCase();  // Convierte la búsqueda a minúsculas
-      const table = document.getElementById('favoritesTable');  // Obtiene la tabla
-      const tr = table.getElementsByTagName('tr');  // Obtiene todas las filas de la tabla
-    
-      // Recorre cada fila (comienza desde el índice 1 para no considerar el encabezado)
-      for (let i = 1; i < tr.length; i++) {
-        const tdName = tr[i].getElementsByTagName('td')[1];  // Nombre de la persona (segunda columna)
-        const tdSerie = tr[i].getElementsByTagName('td')[2];  // Serie favorita (tercera columna)
-        
-        if (tdName && tdSerie) {  // Verifica si las celdas existen
-          const nameText = tdName.textContent || tdName.innerText;  // Obtiene el texto de la columna "Nombre"
-          const serieText = tdSerie.textContent || tdSerie.innerText;  // Obtiene el texto de la columna "Serie Favorita"
-    
-          // Si el nombre o la serie contiene el texto buscado, muestra la fila, si no, la oculta
-          if (nameText.toLowerCase().indexOf(filter) > -1 || serieText.toLowerCase().indexOf(filter) > -1) {
-            tr[i].style.display = '';  // Muestra la fila
-          } else {
-            tr[i].style.display = 'none';  // Oculta la fila
-          }
-        }
-      }
-    }
-    </script>
-    
+  <!-- Tabla -->
+  <table id="favoritesTable" class="table-auto w-full text-left">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="px-4 py-2 cursor-pointer" (click)="sortTable('id')">ID</th>
+        <th class="px-4 py-2 cursor-pointer" (click)="sortTable('nombre')">Nombre</th>
+        <th class="px-4 py-2 cursor-pointer" (click)="sortTable('apellido')">Apellido</th>
+        <th class="px-4 py-2 cursor-pointer" (click)="sortTable('serie')">Serie Favorita</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of paginatedData">
+        <td class="border px-4 py-2">{{ item.id }}</td>
+        <td class="border px-4 py-2">{{ item.nombre }}</td>
+        <td class="border px-4 py-2">{{ item.apellido }}</td>
+        <td class="border px-4 py-2">{{ item.serie }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
