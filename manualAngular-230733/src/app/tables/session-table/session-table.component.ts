@@ -1,15 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-sessions-table',
-  templateUrl: './sessions-table.component.html',
-  styleUrls: ['./sessions-table.component.css'],
+  selector: 'app-session-table',
+  templateUrl: './session-table.component.html',
+  styleUrl: './session-table.component.css',
   imports: [CommonModule,],
-  standalone: true,
+    standalone: true,
 })
-export class SessionsTableComponent implements OnInit {
+export class SessionTableComponent implements OnInit {
   data: any[] = []; // Datos completos de la API
   filteredData: any[] = []; // Datos filtrados
   paginatedData: any[] = []; // Datos paginados
@@ -132,3 +132,4 @@ export class SessionsTableComponent implements OnInit {
     this.fetchData(); // Vuelve a obtener los datos según el estado del checkbox
   }
 }
+

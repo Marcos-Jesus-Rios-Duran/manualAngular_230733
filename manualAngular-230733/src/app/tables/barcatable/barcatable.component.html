@@ -1,0 +1,56 @@
+<div class="flex-[0.88] p-4 bg-gradient-to-r from-yellow-100 via-yellow-50 to-yellow-100 shadow-lg rounded-lg gradient-border">
+    <h1 class="text-5xl font-extrabold text-center mb-6 text-gray-800 drop-shadow">⚽ FC Barcelona Players 🏆</h1>
+    
+    <div class="mb-6 flex justify-between items-center gap-4">
+      <!-- Input de búsqueda -->
+      <input id="searchInput" type="text" class="px-4 py-2 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-1/3" placeholder="🔍 Buscar..." (input)="filterTable($event)">
+      
+      <!-- Selector de tamaño de página -->
+      <select class="border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500" (change)="changePageSize($event)">
+        <option value="5">Mostrar 5</option>
+        <option value="10">Mostrar 10</option>
+        <option value="20">Mostrar 20</option>
+        <option value="25">Mostrar 25</option>
+        <option value="50">Mostrar Todos</option>
+      </select>
+    </div>
+    
+    <!-- Contenedor de la tabla con scroll -->
+    <div class="scroll-container">
+      <table id="barcaTable" class="table-auto w-full text-left border-collapse border border-gray-200">
+        <thead class="bg-yellow-200 border-b border-gray-300">
+          <tr>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('name')">Nombre</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('age')">Edad</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('position')">Posición</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('nationality')">Nacionalidad</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('years_in_club')">Años en el Club</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('goals')">Goles</th>
+            <th class="px-4 py-2 font-bold text-gray-700">Desactivar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Iteración sobre los datos paginados -->
+          <tr *ngFor="let item of paginatedData; let i = index" class="odd:bg-yellow-50 even:bg-yellow-100 hover:bg-yellow-200 transition" [class.opacity-50]="disabledRows.includes(i)">
+            <td class="border px-4 py-2 text-gray-800">{{ item.name ?? 'N/A' }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.age ?? 'N/A' }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.position ?? 'N/A' }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.nationality ?? 'N/A' }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.years_in_club ?? 'N/A' }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.goals ?? 'N/A' }}</td>
+            <td class="border px-4 py-2 text-gray-800">
+              <!-- Checkbox para desactivar filas -->
+              <input type="checkbox" (change)="toggleRow(i)" [checked]="disabledRows.includes(i)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Navegación entre páginas -->
+    <div class="mt-6 flex justify-center items-center gap-4">
+      <button (click)="previousPage()" [disabled]="currentPage === 1" class="text-white px-4 py-2 bg-black rounded-lg shadow-sm hover:bg-yellow-300 transition">Anterior</button>
+      <span class="text-gray-100">Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="text-white px-4 py-2 bg-black rounded-lg shadow-sm hover:bg-yellow-300 transition">Siguiente</button>
+    </div>
+  </div>

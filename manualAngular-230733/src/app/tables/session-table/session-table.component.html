@@ -1,0 +1,52 @@
+<div class="flex-[0.88] p-4 bg-gradient-to-r from-yellow-100 via-yellow-50 to-yellow-100 shadow-lg rounded-lg gradient-border">
+    <h1 class="text-5xl font-extrabold text-center mb-6 text-gray-800 drop-shadow">🎮 Sesiones 🕹️</h1>
+    
+    <div class="mb-6 flex justify-between items-center gap-4">
+      <!-- Buscador -->
+      <input id="searchInput" type="text" class="px-4 py-2 border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-black w-1/3" placeholder="🔍 Buscar..." (input)="filterTable($event)">
+      
+      <!-- Selector de Cantidad -->
+      <select class="border-2 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500" (change)="changePageSize($event)">
+        <option value="5">Mostrar 5</option>
+        <option value="10">Mostrar 10</option>
+        <option value="20">Mostrar 20</option>
+        <option value="50">Mostrar Todos</option>
+      </select>
+  
+      <!-- Checkbox para mostrar solo sesiones activas -->
+      <label class="flex items-center gap-2">
+        <input type="checkbox" (change)="toggleActiveSessions()" [checked]="showActiveOnly">
+        <span class="text-gray-800">Mostrar solo sesiones activas</span>
+      </label>
+    </div>
+    
+    <div class="scroll-container">
+      <table id="sessionsTable" class="table-auto w-full text-left border-collapse border border-gray-200">
+        <thead class="bg-yellow-200 border-b border-gray-300">
+          <tr>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('nickname')">Nickname</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('email')">Email</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('status')">Estado</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('createdAt')">Creado</th>
+            <th class="px-4 py-2 cursor-pointer font-bold text-gray-700 hover:bg-yellow-300 transition" (click)="sortTable('lastAccessed')">Último Acceso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of paginatedData" class="odd:bg-yellow-50 even:bg-yellow-100 hover:bg-yellow-200 transition">
+            <td class="border px-4 py-2 text-gray-800">{{ item.nickname }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.email }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.status }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.createdAt | date: 'short' }}</td>
+            <td class="border px-4 py-2 text-gray-800">{{ item.lastAccessed | date: 'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Navegación entre páginas -->
+    <div class="mt-6 flex justify-center items-center gap-4">
+      <button (click)="previousPage()" [disabled]="currentPage === 1" class="px-4 py-2 bg-yellow-200 rounded-lg shadow-sm hover:bg-yellow-300 transition">Anterior</button>
+      <span class="text-gray-800">Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="px-4 py-2 bg-yellow-200 rounded-lg shadow-sm hover:bg-yellow-300 transition">Siguiente</button>
+    </div>
+  </div>

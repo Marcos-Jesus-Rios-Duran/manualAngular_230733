@@ -18,6 +18,8 @@ import { ContentDashboardComponent } from './dashboard/content-dashboard/content
 import { ZeroConfigComponentComponent } from './tables/zero-config-component/zero-config-component.component';
 import { NintendoTableComponent } from './tables/nintendo-table/nintendo-table.component';
 import { SessionsTableComponent } from './tables/sessions-table/sessions-table.component';
+import { BarcatableComponent } from './tables/barcatable/barcatable.component';
+import { LoginComponent } from './login/login.component';
 export const routes: Routes = [ 
   { path: '', redirectTo: 'page0', pathMatch: 'full' },
   { path: 'page0', component: LandingPageComponent, data: { breadcrumb: 'Ejercicio 0' } },
@@ -34,10 +36,11 @@ export const routes: Routes = [
   { path: 'page11', component: Ejercicio11Component, data: { breadcrumb: 'Ejercicio 11' } },
   { path: 'page12', component: Ejercicio12Component, data: { breadcrumb: 'Ejercicio 12' } },
   {path:'cont',component:ContentTablesComponent,data:{breadcrumb:'cont'}},
-
   {path:'table1',component:ZeroConfigComponentComponent,data:{breadcrumb:'Table 1'}},
   {path:'table2',component:NintendoTableComponent,data:{breadcrumb:'Table 2'}},
-  {path:'table3',component:SessionsTableComponent,data:{breadcrumb:'Table 3'}},
+  { path: 'table3', component: BarcatableComponent, data: { breadcrumb: 'Table 3' } },
+  { path: 'table4', component: SessionsTableComponent, data: { breadcrumb: 'Table 4' } },
   {path:'dashboardContent',component:ContentDashboardComponent,data:{breadcrumb:'Dashboards'}},
+  { path: 'Login', component: LoginComponent, data: { breadcrumb: 'Login' } },
   { path: '**', redirectTo: 'page0' }
 ];
