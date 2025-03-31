@@ -1,0 +1,14 @@
+<div class="flex-[0.88] p-4 bg-gradient-to-r from-yellow-100 via-yellow-50 to-yellow-100 shadow-lg rounded-lg gradient-border">
+    <h1 class="text-5xl font-extrabold text-center mb-6 text-gray-800 drop-shadow">📊 Estadísticas de Sesiones</h1>
+    
+    <div class="mb-6 flex justify-end">
+      <!-- Checkbox para mostrar solo sesiones activas -->
+      <label class="flex items-center gap-2">
+        <input type="checkbox" (change)="toggleActiveSessions()" [checked]="showActiveOnly">
+        <span class="text-gray-800">Mostrar solo sesiones activas</span>
+      </label>
+    </div>
+    
+    <!-- Contenedor del gráfico -->
+    <div id="chartdiv" style="width: 100%; height: 500px;"></div>
+  </div>

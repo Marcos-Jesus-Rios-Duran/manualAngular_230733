@@ -21,7 +21,7 @@ import { SessionsTableComponent } from './tables/sessions-table/sessions-table.c
 import { BarcatableComponent } from './tables/barcatable/barcatable.component';
 import { LoginComponent } from './login/login.component';
 export const routes: Routes = [ 
-  { path: '', redirectTo: 'page0', pathMatch: 'full' },
+  { path: '', redirectTo: '/page0', pathMatch: 'full' }, 
   { path: 'page0', component: LandingPageComponent, data: { breadcrumb: 'Ejercicio 0' } },
   { path: 'page1', component: Ejercicio01Component, data: { breadcrumb: 'Ejercicio 01' } },
   { path: 'page2', component: Ejercicio02Component, data: { breadcrumb: 'Ejercicio 02' } },

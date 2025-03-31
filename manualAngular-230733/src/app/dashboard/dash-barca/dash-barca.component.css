@@ -1,0 +1,54 @@
+/* dash-barca.component.css */
+.gradient-border {
+    position: relative;
+    padding: 2px;
+    border-radius: 8px;
+    background: white;
+    margin: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(45deg, #a50044, #004d98, #edbb00);
+    background-size: 300% 300%;
+    border-radius: 10px;
+    animation: gradientBG 10s ease infinite;
+  }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .chart-header {
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .chart-header h1 {
+    color: #004d98;
+    margin-bottom: 5px;
+  }
+  
+  .chart-header p {
+    color: #666;
+  }
+  
+  .chart-footer {
+    text-align: center;
+    padding: 10px;
+    color: #666;
+    font-size: 0.9em;
+  }
+  
+  #chartdiv {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
